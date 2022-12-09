@@ -1,0 +1,128 @@
+local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
+
+--[[SolarisLib:New({
+  Name - Title of the UI <string>
+  FolderToSave - Name of the folder where the UI files will be stored <string>
+})]]
+local win = SolarisLib:New({
+  Name = "Flee the Facility GUI's | Mr_BullFrog",
+  FolderToSave = "SolarisLibStuff"
+})
+
+--win:Tab(title <string>)
+local tab = win:Tab("Main")
+
+--tab:Section(title <string>)
+local sec = tab:Section("Favorites")
+sec:Button("Arctic", function() 
+    loadstring(game:HttpGetAsync("https://polar7.wtf/Arctic/ArcticHub/Loader.txt"))()
+end)
+
+sec:Button("TheScriptBoi", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/khoaScript/scripts/master/flee-the-facility.lua"))()
+end)
+
+local sec = tab:Section("Others")
+sec:Button("Discord FTF Gui", function()
+    loadstring(game:HttpGet('https://rentry.co/9uqkr/raw'))()
+end)
+
+
+sec:Button("Rox Hub (RoxHub_KeyLEWMTLDOTBAGT)", function()
+    pcall(function()
+Rox_Hub = true
+loadstring(game:HttpGet("https://gist.githubusercontent.com/HaxxV1/d7cfdb5090e819a84a8db22fb113f39d/raw"))()
+end)
+
+
+
+-- Key: https://direct-link.net/385482/roxhub-key
+
+-- key is RoxHub_KeyLEWMTLDOTBAGT
+end)
+
+sec:Button("V.G HUB", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+end)
+
+sec:Button("fleeware v.4.0.5", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Drifty96/ftfgui/main/ftfgui", true))()
+end)
+
+sec:Button("FTF GUI by actz2196", function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/actz2196/fortnite/main/FleeTheFacility.lua'), true))()
+end)
+
+sec:Button("FTF GUI by toxic (https://pastebin.com/raw/W0WpiEY3)", function()
+    loadstring(game:HttpGet("https://nns4.me/scripts/loader.lua"))()
+--https://nns4.me/keys/1
+
+
+-- key is nns_ff84c3c6d0078a327c848e4eab68da724d6eb5356b957651b2a28e62f6ab0e2060765eb11bae60972b100ef9509673c6
+-- https://nns4.me/scripts/getkey_nns8478376637.php
+end)
+
+sec:Button("", function()
+    
+end)
+
+
+local tab = win:Tab("Extras") 
+
+local sec = tab:Section("Extra Items")
+
+--sec:Slider(title <string>,default <number>,max <number>,minimum <number>,increment <number>, flag <string>, callback <function>)
+local slider = sec:Slider("FOV", 70,120,70,1,"Slider", function(c)
+game:GetService("Workspace").Camera.FieldOfView = c
+end)
+
+--sec:Toggle(title <string>,default <boolean>, flag <string>, callback <function>)
+local toggle = sec:Toggle("No error while hacking", false,"Toggle", function()
+if game:GetService("Players").LocalPlayer.TempPlayerStatsModule.MinigameResult.Value == true then
+do
+game:GetService("Players").LocalPlayer.TempPlayerStatsModule.MinigameResult.Value = false
+end
+else
+if game:GetService("Players").LocalPlayer.TempPlayerStatsModule.MinigameResult.Value == false then
+    do
+game:GetService("Players").LocalPlayer.TempPlayerStatsModule.MinigameResult.Value = true
+end
+
+--sec:Toggle(title <string>,default <boolean>, flag <string>, callback <function>)
+local toggle = sec:Toggle("Crawl As Beast | Disable/Enable Crawl", false,"Toggle", function()
+if game:GetService("Players").LocalPlayer.TempPlayerStatsModule.DisableCrawl.Value == true then
+do
+game:GetService("Players").LocalPlayer.TempPlayerStatsModule.DisableCrawl.Value = false
+end
+else
+if game:GetService("Players").LocalPlayer.TempPlayerStatsModule.DisableCrawl.Value == false then
+    do
+game:GetService("Players").LocalPlayer.TempPlayerStatsModule.DisableCrawl.Value = true
+end
+
+sec:Button("FullBright", function()
+    game:GetService("Lighting").GlobalShadows = false
+end)
+    
+sec:Button("Join Smallest Server", function()
+          		local Http = game:GetService("HttpService")
+local TPS = game:GetService("TeleportService")
+local Api = "https://games.roblox.com/v1/games/"
+
+local _place = game.PlaceId
+local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+function ListServers(cursor)
+   local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+   return Http:JSONDecode(Raw)
+end
+
+local Server, Next; repeat
+   local Servers = ListServers(Next)
+   Server = Servers.data[1]
+   Next = Servers.nextPageCursor
+until Server
+
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+end)
+end
+end)
